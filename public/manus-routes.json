@@ -1,0 +1,8 @@
+{
+  "routes": [
+    { "path": "/", "title": "Auto Insurance Made Clear | Next Auto Shield" },
+    { "path": "/about", "title": "About Us | Next Auto Shield" },
+    { "path": "/contact", "title": "Contact Us | Next Auto Shield" },
+    { "path": "/request-a-quote", "title": "Request a Quote | Next Auto Shield" }
+  ]
+}
