@@ -1,0 +1,73 @@
+02:18:39.146 Running build in Washington, D.C., USA (East) – iad1
+02:18:39.147 Build machine configuration: 2 cores, 8 GB
+02:18:39.273 Cloning github.com/letsconnectzohaib/NextAutoShield (Branch: main, Commit: 13cb81f)
+02:18:46.588 Cloning completed: 7.314s
+02:18:46.713 Not using build cache
+02:18:47.037 Running "vercel build"
+02:18:47.049 Vercel CLI 64.7.0
+02:18:47.355 Warning: Detected "engines": { "node": ">=22.0.0" } in your `package.json` that will automatically upgrade when a new major Node.js Version is released. Learn More: https://vercel.link/node-version
+02:18:47.366 Installing dependencies...
+02:18:47.983 npm warn Unknown env config "cache-dir". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+02:19:00.312 npm warn deprecated next@15.1.6: This version has a security vulnerability. Please upgrade to a patched version. See https://nextjs.org/blog/CVE-2025-66478 for more details.
+02:19:00.471 
+02:19:00.471 added 39 packages in 13s
+02:19:00.471 
+02:19:00.471 6 packages are looking for funding
+02:19:00.472   run `npm fund` for details
+02:19:00.472 npm warn install-scripts 1 package has install scripts not yet covered by allowScripts:
+02:19:00.473 npm warn install-scripts   sharp@0.33.5 (install: node install/check)
+02:19:00.473 npm warn install-scripts
+02:19:00.473 npm warn install-scripts Run `npm install-scripts ls` to review, or `npm install-scripts approve <pkg>` to allow.
+02:19:00.522 Detected Next.js version: 15.1.6
+02:19:00.525 Running "npm run build"
+02:19:00.643 npm warn Unknown env config "cache-dir". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+02:19:00.660 
+02:19:00.660 > next-auto-shield@1.0.0 build
+02:19:00.660 > next build
+02:19:00.660 
+02:19:01.273 Attention: Next.js now collects completely anonymous telemetry regarding usage.
+02:19:01.273 This information is used to shape Next.js' roadmap and prioritize features.
+02:19:01.273 You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+02:19:01.273 https://nextjs.org/telemetry
+02:19:01.273 
+02:19:01.336    ▲ Next.js 15.1.6
+02:19:01.337 
+02:19:01.349    Creating an optimized production build ...
+02:19:11.336  ✓ Compiled successfully
+02:19:11.338    Linting and checking validity of types ...
+02:19:11.738 
+02:19:11.738    We detected TypeScript in your project and reconfigured your tsconfig.json file for you.
+02:19:11.738    The following mandatory changes were made to your tsconfig.json:
+02:19:11.738 
+02:19:11.738    	- jsx was set to preserve (next.js implements its own optimized jsx transform)
+02:19:11.738 
+02:19:14.906    Collecting page data ...
+02:19:17.852    Generating static pages (0/7) ...
+02:19:18.669    Generating static pages (1/7) 
+02:19:18.669    Generating static pages (3/7) 
+02:19:18.670    Generating static pages (5/7) 
+02:19:18.670  ✓ Generating static pages (7/7)
+02:19:19.019    Finalizing page optimization ...
+02:19:19.019    Collecting build traces ...
+02:19:32.213 
+02:19:32.216 Route (app)                              Size     First Load JS
+02:19:32.217 ┌ ○ /                                    2.32 kB         117 kB
+02:19:32.217 ├ ○ /_not-found                          137 B           105 kB
+02:19:32.217 ├ ○ /about                               183 B           114 kB
+02:19:32.217 ├ ○ /contact                             2.13 kB         107 kB
+02:19:32.217 └ ○ /request-a-quote                     2.59 kB         112 kB
+02:19:32.217 + First Load JS shared by all            105 kB
+02:19:32.217   ├ chunks/4bd1b696-42d6eb02049d68c2.js  52.9 kB
+02:19:32.217   ├ chunks/517-62fe557e1be77e05.js       50.5 kB
+02:19:32.217   └ other shared chunks (total)          1.92 kB
+02:19:32.217 
+02:19:32.217 
+02:19:32.217 ○  (Static)  prerendered as static content
+02:19:32.217 
+02:19:32.434 Traced Next.js server files in: 126.035ms
+02:19:32.632 Created all serverless functions in: 198.483ms
+02:19:32.643 Collected static files (public/, static/, .next/static): 6.122ms
+02:19:32.697 Build Completed in .vercel/build-output [45s]
+02:19:32.718 Deploying outputs...
+02:19:33.031 Build cache cleared after a dependency security block. Redeploy to build with a clean cache.
+02:19:33.031 Vulnerable version of Next.js detected, please update immediately.
