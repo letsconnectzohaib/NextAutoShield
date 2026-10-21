@@ -1,27 +1,55 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { HeroCopy, HeroVisual } from "@/components/hero-motion";
+import { HeroCopy } from "@/components/hero-motion";
+import { IMAGES } from "@/lib/site-config";
 
 export function Hero() {
   return (
-    <section className="hero-section">
-      <div className="hero-background" aria-hidden="true">
-        <span className="hero-background__glow hero-background__glow--one" />
-        <span className="hero-background__glow hero-background__glow--two" />
+    <section className="hero-section hero-section--reference" id="hero">
+      {/* Full-Bleed hero-bg.png Background Image */}
+      <div className="hero-full-bg-wrap" aria-hidden="true">
+        <Image
+          src={IMAGES.heroBg}
+          alt="Next Auto Shield hero background featuring candy red sedan outside modern architectural villa"
+          fill
+          priority
+          quality={92}
+          sizes="100vw"
+          className="hero-full-bg-image"
+          referrerPolicy="no-referrer"
+        />
+        <div className="hero-full-bg-overlay" />
       </div>
-      <div className="container hero-layout">
+
+      <div className="hero-container-exact">
         <HeroCopy />
-        <HeroVisual />
+        {/* Right side remains open so the candy red car and sunlit villa on hero-bg.png shine through */}
+        <div className="hero-right-stage" aria-hidden="true" />
       </div>
+
+      {/* Coverage Navigation Ribbon */}
       <nav className="container trust-ribbon" aria-label="Jump to coverage details">
         <span className="trust-ribbon__lead">
-          <small>Coverage, at a glance</small>
+          <small>Coverage at a glance</small>
           <strong>Explore your options</strong>
         </span>
-        <Link className="trust-ribbon__link" href="/#coverage-liability"><span>Liability</span><ArrowRight size={16} aria-hidden="true" /></Link>
-        <Link className="trust-ribbon__link" href="/#coverage-collision"><span>Collision</span><ArrowRight size={16} aria-hidden="true" /></Link>
-        <Link className="trust-ribbon__link" href="/#coverage-comprehensive"><span>Comprehensive</span><ArrowRight size={16} aria-hidden="true" /></Link>
-        <Link className="trust-ribbon__link" href="/#coverage-roadside-assistance"><span>Roadside assistance</span><ArrowRight size={16} aria-hidden="true" /></Link>
+        <Link className="trust-ribbon__link" href="/#coverage-liability">
+          <span>Liability Protection</span>
+          <ArrowRight size={16} aria-hidden="true" />
+        </Link>
+        <Link className="trust-ribbon__link" href="/#coverage-collision">
+          <span>Collision Coverage</span>
+          <ArrowRight size={16} aria-hidden="true" />
+        </Link>
+        <Link className="trust-ribbon__link" href="/#coverage-comprehensive">
+          <span>Comprehensive Care</span>
+          <ArrowRight size={16} aria-hidden="true" />
+        </Link>
+        <Link className="trust-ribbon__link" href="/#coverage-roadside-assistance">
+          <span>24/7 Roadside Assistance</span>
+          <ArrowRight size={16} aria-hidden="true" />
+        </Link>
       </nav>
     </section>
   );

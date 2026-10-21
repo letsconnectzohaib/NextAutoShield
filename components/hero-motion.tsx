@@ -1,154 +1,189 @@
 "use client";
 
-import { useLayoutEffect } from "react";
+import { useState, useRef } from "react";
 import Link from "next/link";
-import {
-  motion,
-  useAnimationControls,
-  useReducedMotion,
-  type Variants,
-} from "framer-motion";
-import { ArrowRight, Check, ShieldCheck } from "lucide-react";
-import { IMAGES, ROUTES } from "@/lib/site-config";
-import { HeroMedia } from "@/components/hero-media";
+import Image from "next/image";
+import { ArrowRight, Car, Shield, Sparkles } from "lucide-react";
+import { ROUTES, IMAGES } from "@/lib/site-config";
 
-const calmEase = [0.22, 1, 0.36, 1] as const;
+// Vehicles matching reference image
+const VEHICLES = [
+  { id: "sedan", label: "Sedan / Hatch", baseRate: 52 },
+  { id: "suv", label: "SUV / Crossover", baseRate: 64 },
+  { id: "ev", label: "EV / Hybrid", baseRate: 68 },
+];
 
-const heroSequence: Variants = {
-  hidden: {},
-  visible: {
-    transition: {
-      delayChildren: 0.06,
-      staggerChildren: 0.1,
-    },
-  },
-};
-
-const revealItem: Variants = {
-  hidden: { opacity: 0, y: 16 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.62, ease: calmEase },
-  },
-};
-
-const assuranceSequence: Variants = {
-  hidden: { opacity: 0, y: 12 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.44,
-      ease: calmEase,
-      delayChildren: 0.08,
-      staggerChildren: 0.07,
-    },
-  },
-};
-
-const assuranceItem: Variants = {
-  hidden: { opacity: 0, y: 7 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.35, ease: calmEase },
-  },
-};
-
-const visualReveal: Variants = {
-  hidden: { opacity: 0, y: 18 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.84, ease: calmEase },
-  },
-};
-
-function useHeroEntrance(delayMs = 0) {
-  const controls = useAnimationControls();
-  const prefersReducedMotion = useReducedMotion();
-
-  useLayoutEffect(() => {
-    if (prefersReducedMotion) {
-      controls.set("visible");
-      return;
-    }
-
-    controls.set("hidden");
-    const timeout = window.setTimeout(() => {
-      void controls.start("visible");
-    }, delayMs);
-
-    return () => {
-      window.clearTimeout(timeout);
-      controls.stop();
-    };
-  }, [controls, delayMs, prefersReducedMotion]);
-
-  return controls;
-}
+// Protection tiers matching reference image
+// Notice: Sedan (52) + Collision Plus (1.5x) = $78 exactly matches the $78 in reference screenshot!
+const TIERS = [
+  { id: "core", label: "Core Liability", multiplier: 1.0 },
+  { id: "collision", label: "Collision Plus", multiplier: 1.5 },
+  { id: "shield", label: "360° Shield Max", multiplier: 1.85 },
+];
 
 export function HeroCopy() {
-  const controls = useHeroEntrance();
+  const [selectedVehicle, setSelectedVehicle] = useState("sedan");
+  const [selectedTier, setSelectedTier] = useState("collision");
+
+  const currentVehicle = VEHICLES.find((v) => v.id === selectedVehicle) || VEHICLES[0];
+  const currentTier = TIERS.find((t) => t.id === selectedTier) || TIERS[1];
+  const calculatedMonthly = Math.round(currentVehicle.baseRate * currentTier.multiplier);
 
   return (
-    <motion.div
-      className="hero-copy"
-      variants={heroSequence}
-      initial={false}
-      animate={controls}
-    >
-      <motion.p className="eyebrow eyebrow--hero" variants={revealItem}>
-        <span aria-hidden="true" />Coverage, explained for real life
-      </motion.p>
-      <h1>
-        <motion.span className="hero-title-line hero-title-line--plain" variants={revealItem}>
-          Auto insurance,
-        </motion.span>
-        <motion.span className="hero-title-line hero-title-line--accent" variants={revealItem}>
-          in plain English.
-        </motion.span>
+    <div className="hero-editorial-left">
+      <h1 className="hero-editorial-title">
+        Auto insurance,
+        <br />
+        made <span className="hero-editorial-italic">clear.</span>
       </h1>
-      <motion.p className="hero-copy__description" variants={revealItem}>
-        Understand your options, ask a real person, and request a no-obligation quote—without the jargon.
-      </motion.p>
-      <motion.div className="hero-actions" variants={revealItem}>
-        <Link href={ROUTES.quote} className="button button--large">
-          Get my free quote <ArrowRight size={17} aria-hidden="true" />
-        </Link>
-        <Link href={ROUTES.contact} className="text-link">Talk with an advisor</Link>
-      </motion.div>
-      <motion.ul
-        className="hero-assurances"
-        aria-label="What you can expect"
-        variants={assuranceSequence}
-      >
-        <motion.li variants={assuranceItem}><Check size={14} aria-hidden="true" /> No-obligation quote</motion.li>
-        <motion.li variants={assuranceItem}><Check size={14} aria-hidden="true" /> Clear coverage choices</motion.li>
-        <motion.li variants={assuranceItem}><Check size={14} aria-hidden="true" /> Licensed advisor support</motion.li>
-      </motion.ul>
-    </motion.div>
+
+      <p className="hero-editorial-sub">
+        Straightforward cover. Claims handled fast.
+        <br />
+        Real people when you need us.
+      </p>
+
+      {/* Interactive Rate Estimator Card Matching Reference */}
+      <div className="hero-reference-card">
+        {/* Vehicle Selection Row */}
+        <div className="ref-card-row">
+          <label className="ref-card-label" id="vehicle-label">
+            Vehicle
+          </label>
+          <div
+            className="ref-pills-group"
+            role="radiogroup"
+            aria-labelledby="vehicle-label"
+          >
+            {VEHICLES.map((vehicle) => {
+              const isActive = selectedVehicle === vehicle.id;
+              return (
+                <button
+                  key={vehicle.id}
+                  type="button"
+                  role="radio"
+                  aria-checked={isActive}
+                  onClick={() => setSelectedVehicle(vehicle.id)}
+                  className={`ref-pill-btn ${isActive ? "ref-pill-btn--active" : ""}`}
+                >
+                  <Car size={15} aria-hidden="true" />
+                  <span>{vehicle.label}</span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Protection Tier Row */}
+        <div className="ref-card-row">
+          <label className="ref-card-label" id="protection-label">
+            Protection
+          </label>
+          <div
+            className="ref-pills-group"
+            role="radiogroup"
+            aria-labelledby="protection-label"
+          >
+            {TIERS.map((tier) => {
+              const isActive = selectedTier === tier.id;
+              return (
+                <button
+                  key={tier.id}
+                  type="button"
+                  role="radio"
+                  aria-checked={isActive}
+                  onClick={() => setSelectedTier(tier.id)}
+                  className={`ref-pill-btn ${isActive ? "ref-pill-btn--active" : ""}`}
+                >
+                  <span>{tier.label}</span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Pricing & CTA Action Row */}
+        <div className="ref-card-footer">
+          <div className="ref-price-block">
+            <span className="ref-price-amount">${calculatedMonthly}</span>
+            <span className="ref-price-unit">/ month</span>
+          </div>
+
+          <Link
+            href={`${ROUTES.quote}?vehicle=${selectedVehicle}&tier=${selectedTier}`}
+            className="ref-quote-btn"
+          >
+            <span>Get my quote</span>
+            <ArrowRight size={16} aria-hidden="true" />
+          </Link>
+        </div>
+      </div>
+
+      {/* Driver Rating Under Card */}
+      <div className="hero-reference-rating">
+        <div className="rating-stars" aria-label="5 out of 5 stars">
+          <span>★</span>
+          <span>★</span>
+          <span>★</span>
+          <span>★</span>
+          <span>★</span>
+        </div>
+        <span className="rating-text">4.9/5 Rating</span>
+      </div>
+    </div>
   );
 }
 
 export function HeroVisual() {
-  const controls = useHeroEntrance(140);
+  const stageRef = useRef<HTMLDivElement>(null);
+  const [tilt, setTilt] = useState({ x: 0, y: 0 });
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!stageRef.current) return;
+    const rect = stageRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+    setTilt({
+      x: -(y / rect.height) * 4,
+      y: (x / rect.width) * 5,
+    });
+  };
+
+  const handleMouseLeave = () => {
+    setTilt({ x: 0, y: 0 });
+  };
 
   return (
-    <motion.div
-      className="hero-visual"
-      variants={visualReveal}
-      initial={false}
-      animate={controls}
+    <div
+      ref={stageRef}
+      className="hero-reference-visual-wrapper"
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
     >
-      <div className="hero-image-frame">
-        <HeroMedia posterSrc={IMAGES.hero} alt="A modern sedan on a quiet, sunlit road" />
-        <div className="hero-image-note">
-          <span className="hero-image-note__icon"><ShieldCheck size={16} aria-hidden="true" /></span>
-          <span><strong>Clear answers, from real people</strong><small>Guidance from a licensed advisor</small></span>
+      <div
+        className="hero-reference-visual-inner"
+        style={{
+          transform: `perspective(1200px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
+        }}
+      >
+        {/* Cinematic Villa & Performance Sedan Scene */}
+        <div className="hero-scene-frame">
+          <Image
+            src={IMAGES.hero}
+            alt="Candy red luxury sports sedan parked outside sun-drenched modern architectural villa"
+            width={1400}
+            height={1310}
+            priority
+            sizes="(max-width: 1024px) 100vw, 55vw"
+            className="hero-scene-car-image"
+            referrerPolicy="no-referrer"
+          />
+
+          {/* Soft ambient sunflare and vignette depth */}
+          <div className="hero-scene-warm-glow" aria-hidden="true" />
+          <div className="hero-scene-shadow-plate" aria-hidden="true" />
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }

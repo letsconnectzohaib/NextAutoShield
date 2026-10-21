@@ -15,7 +15,7 @@ export function HowItWorks() {
             titleId="process-title"
             description="A clear path from your first question to a policy that feels right for you."
           />
-          <div className="process-aside"><span className="process-aside__dot" />No obligation. No pressure.</div>
+          <div className="process-aside">No obligation · No pressure</div>
         </div>
         <ol className="process-list">
           {quoteSteps.map(({ number, Icon, title, description }) => (

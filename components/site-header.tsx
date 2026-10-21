@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowUpRight, Phone } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { ROUTES, SITE } from "@/lib/site-config";
 import { Brand } from "@/components/brand";
 import { MobileMenu } from "@/components/mobile-menu";
@@ -13,35 +13,36 @@ const links = [
 
 export function SiteHeader() {
   return (
-    <>
-      <div className="utility-bar">
-        <div className="container utility-bar__inner">
-          <span>{SITE.hours}</span>
-          <a href={`tel:${SITE.phoneHref}`} className="utility-bar__phone">
-            <Phone size={13} strokeWidth={1.8} aria-hidden="true" />
-            {SITE.phoneDisplay}
-          </a>
-        </div>
-      </div>
-      <header className="site-header">
-        <div className="container site-header__inner">
-          <Brand showMark={false} />
-          <nav className="desktop-nav" aria-label="Main navigation">
+    <header className="site-header-floating-wrap">
+      <div className="container">
+        <nav className="floating-nav-bar" aria-label="Main navigation">
+          <div className="floating-nav-bar__brand">
+            <Brand showMark={true} />
+          </div>
+
+          <div className="floating-nav-bar__links">
             {links.map((link) => (
               <Link key={link.label} href={link.href}>
                 {link.label}
               </Link>
             ))}
-          </nav>
-          <div className="site-header__actions">
-            <Link className="header-contact" href={ROUTES.contact}>Talk to an advisor</Link>
-            <Link className="button button--small" href={ROUTES.quote}>
-              Get a quote <ArrowUpRight size={15} aria-hidden="true" />
+          </div>
+
+          <div className="floating-nav-bar__action">
+            <Link className="button button--floating-cta" href={ROUTES.quote}>
+              Get a quote <ArrowRight size={15} aria-hidden="true" />
             </Link>
           </div>
-          <MobileMenu links={links} contactHref={ROUTES.contact} quoteHref={ROUTES.quote} />
-        </div>
-      </header>
-    </>
+
+          <div className="floating-nav-bar__mobile">
+            <MobileMenu
+              links={[...links, { href: ROUTES.contact, label: "Talk to an advisor" }]}
+              contactHref={ROUTES.contact}
+              quoteHref={ROUTES.quote}
+            />
+          </div>
+        </nav>
+      </div>
+    </header>
   );
 }

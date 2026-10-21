@@ -26,6 +26,9 @@ export const ROUTES = {
 } as const;
 
 export const IMAGES = {
-  hero: "/images/hero-still.webp",
+  hero: "/images/hero-bg.webp",
+  heroBg: "/images/hero-bg.webp",
+  heroBgPng: "/hero-bg.png",
+  heroScene: "/images/hero-car-scene.webp",
   advisor: "/images/advisor-meeting.webp",
 } as const;

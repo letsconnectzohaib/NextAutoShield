@@ -7,9 +7,15 @@ import { SITE } from "@/lib/site-config";
 export function QuoteForm() {
   const [submitted, setSubmitted] = useState(false);
   const [maximumVehicleYear, setMaximumVehicleYear] = useState<number>();
+  const [zipValue, setZipValue] = useState("");
 
   useEffect(() => {
     setMaximumVehicleYear(new Date().getFullYear() + 1);
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      const urlZip = params.get("zip");
+      if (urlZip) setZipValue(urlZip);
+    }
   }, []);
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -38,7 +44,7 @@ export function QuoteForm() {
         <label className="form-field"><span>Last name <b aria-hidden="true">*</b></span><input name="lastName" autoComplete="family-name" required placeholder="Taylor" /></label>
         <label className="form-field"><span>Email address <b aria-hidden="true">*</b></span><input type="email" name="email" autoComplete="email" required placeholder="jordan@example.com" /></label>
         <label className="form-field"><span>Phone number</span><input type="tel" name="phone" autoComplete="tel" placeholder="(555) 123-4567" /></label>
-        <label className="form-field"><span>ZIP code <b aria-hidden="true">*</b></span><input name="zip" autoComplete="postal-code" inputMode="numeric" pattern="[0-9]{5}" maxLength={5} required placeholder="75201" title="Enter a 5-digit ZIP code" /></label>
+        <label className="form-field"><span>ZIP code <b aria-hidden="true">*</b></span><input name="zip" autoComplete="postal-code" inputMode="numeric" pattern="[0-9]{5}" maxLength={5} required placeholder="75201" title="Enter a 5-digit ZIP code" value={zipValue} onChange={(e) => setZipValue(e.target.value)} /></label>
       </div>
       <div className="form-section-title form-section-title--spaced"><span>02</span><div><h2>About your vehicle</h2><p>Tell us what you’d like to protect.</p></div></div>
       <div className="form-grid">
