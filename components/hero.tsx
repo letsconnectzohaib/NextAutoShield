@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { HeroCopy } from "@/components/hero-motion";
@@ -6,27 +5,25 @@ import { IMAGES } from "@/lib/site-config";
 
 export function Hero() {
   return (
-    <section className="hero-section hero-section--reference" id="hero">
-      {/* Full-Bleed background: 100% crisp car on the right, feathering strictly in the architectural stone area */}
+    <section className="hero-section hero-section--immersive" id="hero">
+      {/* Full-bleed scene with the copy layered directly over the left side. */}
       <div className="hero-full-bg-wrap" aria-hidden="true">
-        <Image
-          src={IMAGES.heroBgPng || "/hero-bg.png"}
-          alt="Next Auto Shield hero background featuring candy red sedan outside modern architectural villa"
-          fill
-          priority
-          quality={96}
-          sizes="100vw"
-          className="hero-full-bg-image"
-          referrerPolicy="no-referrer"
-        />
-        {/* Soft directional scrim behind text on the left, stopping before the vehicle */}
+        <picture className="hero-background-picture">
+          <source media="(max-width: 780px)" srcSet={IMAGES.heroBgMobile} />
+          <img
+            src={IMAGES.heroBg}
+            alt=""
+            className="hero-full-bg-image"
+            fetchPriority="high"
+            decoding="async"
+          />
+        </picture>
+        {/* Seamless dark gradient keeps the overlaid copy legible without making a separate panel. */}
         <div className="hero-bg-dim-scrim" />
       </div>
 
-      <div className="hero-container-exact">
+      <div className="hero-container-immersive">
         <HeroCopy />
-        {/* Right side remains completely open so the candy red car and sunlit villa shine through at 100% clarity */}
-        <div className="hero-right-stage" aria-hidden="true" />
       </div>
 
       {/* Coverage Navigation Ribbon with crisp opaque background */}
