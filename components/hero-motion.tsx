@@ -3,34 +3,17 @@
 import { useState, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Car, Shield, Sparkles } from "lucide-react";
+import { ArrowRight, Check, ShieldCheck, UserRoundCheck } from "lucide-react";
 import { ROUTES, IMAGES } from "@/lib/site-config";
 
-// Vehicles matching reference image
-const VEHICLES = [
-  { id: "sedan", label: "Sedan / Hatch", baseRate: 52 },
-  { id: "suv", label: "SUV / Crossover", baseRate: 64 },
-  { id: "ev", label: "EV / Hybrid", baseRate: 68 },
-];
-
-// Protection tiers matching reference image
-// Notice: Sedan (52) + Collision Plus (1.5x) = $78 exactly matches the $78 in reference screenshot!
-const TIERS = [
-  { id: "core", label: "Core Liability", multiplier: 1.0 },
-  { id: "collision", label: "Collision Plus", multiplier: 1.5 },
-  { id: "shield", label: "360° Shield Max", multiplier: 1.85 },
-];
-
 export function HeroCopy() {
-  const [selectedVehicle, setSelectedVehicle] = useState("sedan");
-  const [selectedTier, setSelectedTier] = useState("collision");
-
-  const currentVehicle = VEHICLES.find((v) => v.id === selectedVehicle) || VEHICLES[0];
-  const currentTier = TIERS.find((t) => t.id === selectedTier) || TIERS[1];
-  const calculatedMonthly = Math.round(currentVehicle.baseRate * currentTier.multiplier);
-
   return (
     <div className="hero-editorial-left">
+      <p className="hero-editorial-eyebrow">
+        <span className="hero-editorial-eyebrow__icon"><ShieldCheck size={16} aria-hidden="true" /></span>
+        Clear protection. Real support.
+      </p>
+
       <h1 className="hero-editorial-title">
         Auto insurance,
         <br />
@@ -38,98 +21,27 @@ export function HeroCopy() {
       </h1>
 
       <p className="hero-editorial-sub">
-        Straightforward cover. Claims handled fast.
-        <br />
-        Real people when you need us.
+        Understand your coverage choices, explore options that fit the way you drive, and get help from a licensed advisor when you need it.
       </p>
 
-      {/* Interactive Rate Estimator Card Matching Reference */}
-      <div className="hero-reference-card">
-        {/* Vehicle Selection Row */}
-        <div className="ref-card-row">
-          <label className="ref-card-label" id="vehicle-label">
-            Vehicle
-          </label>
-          <div
-            className="ref-pills-group"
-            role="radiogroup"
-            aria-labelledby="vehicle-label"
-          >
-            {VEHICLES.map((vehicle) => {
-              const isActive = selectedVehicle === vehicle.id;
-              return (
-                <button
-                  key={vehicle.id}
-                  type="button"
-                  role="radio"
-                  aria-checked={isActive}
-                  onClick={() => setSelectedVehicle(vehicle.id)}
-                  className={`ref-pill-btn ${isActive ? "ref-pill-btn--active" : ""}`}
-                >
-                  <Car size={15} aria-hidden="true" />
-                  <span>{vehicle.label}</span>
-                </button>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Protection Tier Row */}
-        <div className="ref-card-row">
-          <label className="ref-card-label" id="protection-label">
-            Protection
-          </label>
-          <div
-            className="ref-pills-group"
-            role="radiogroup"
-            aria-labelledby="protection-label"
-          >
-            {TIERS.map((tier) => {
-              const isActive = selectedTier === tier.id;
-              return (
-                <button
-                  key={tier.id}
-                  type="button"
-                  role="radio"
-                  aria-checked={isActive}
-                  onClick={() => setSelectedTier(tier.id)}
-                  className={`ref-pill-btn ${isActive ? "ref-pill-btn--active" : ""}`}
-                >
-                  <span>{tier.label}</span>
-                </button>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Pricing & CTA Action Row */}
-        <div className="ref-card-footer">
-          <div className="ref-price-block">
-            <span className="ref-price-amount">${calculatedMonthly}</span>
-            <span className="ref-price-unit">/ month</span>
-          </div>
-
-          <Link
-            href={`${ROUTES.quote}?vehicle=${selectedVehicle}&tier=${selectedTier}`}
-            className="ref-quote-btn"
-          >
-            <span>Get my quote</span>
-            <ArrowRight size={16} aria-hidden="true" />
-          </Link>
-        </div>
+      <div className="hero-editorial-actions">
+        <Link href={ROUTES.quote} className="hero-primary-action">
+          <span>Explore quote options</span>
+          <ArrowRight size={17} aria-hidden="true" />
+        </Link>
+        <Link href="/#coverage-liability" className="hero-secondary-action">
+          Explore coverage
+          <ArrowRight size={15} aria-hidden="true" />
+        </Link>
       </div>
 
-      {/* Driver Rating Under Card */}
-      <div className="hero-reference-rating">
-        <div className="rating-stars" aria-label="5 out of 5 stars">
-          <span>★</span>
-          <span>★</span>
-          <span>★</span>
-          <span>★</span>
-          <span>★</span>
-        </div>
-        <span className="rating-text">4.9/5 Rating</span>
+      <div className="hero-editorial-trust" aria-label="What you can expect">
+        <span className="hero-editorial-trust__item"><Check size={15} aria-hidden="true" /> No obligation to buy</span>
+        <span className="hero-editorial-trust__item"><ShieldCheck size={15} aria-hidden="true" /> Clear coverage explanations</span>
+        <span className="hero-editorial-trust__item"><UserRoundCheck size={15} aria-hidden="true" /> Licensed advisor support</span>
       </div>
+
+      <p className="hero-editorial-note">A quote request doesn’t create a policy. Terms, pricing, and availability vary.</p>
     </div>
   );
 }
