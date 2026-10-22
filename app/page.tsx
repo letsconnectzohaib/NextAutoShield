@@ -5,6 +5,8 @@ import { CoverageGrid } from "@/components/coverage-grid";
 import { FaqList } from "@/components/faq-list";
 import { Hero } from "@/components/hero";
 import { HowItWorks } from "@/components/how-it-works";
+import { PolicyBasics } from "@/components/policy-basics";
+import { QuotePrep } from "@/components/quote-prep";
 import { QuoteCallout } from "@/components/quote-callout";
 import { Testimonials } from "@/components/testimonials";
 import { pageMetadata } from "@/lib/page-metadata";
@@ -37,10 +39,12 @@ export default function HomePage() {
       <Hero />
       <BenefitGrid />
       <CoverageGrid />
+      <PolicyBasics />
       <AdvisorSection />
       <HowItWorks />
       <Testimonials />
       <FaqList />
+      <QuotePrep />
       <QuoteCallout />
     </main>
   );
