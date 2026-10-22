@@ -1786,3 +1786,111 @@ html { scroll-padding-top: 100px; }
   .hero-section--type-led .hero-ribbon-wrapper > .trust-ribbon,
   .site-footer > .container { width: calc(100% - 34px); }
 }
+
+
+/* Airy, floating hero artwork: a drawn path and editorial words instead of a card or vehicle image. */
+.hero-orbit-art {
+  position: relative;
+  width: min(100%, 590px);
+  height: 450px;
+  justify-self: center;
+  color: #182a33;
+  isolation: isolate;
+}
+.hero-orbit-art__caption,
+.hero-orbit-art__signature {
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #748087;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .14em;
+}
+.hero-orbit-art__caption { top: 6px; right: 4px; left: 4px; justify-content: space-between; }
+.hero-orbit-art__caption span:last-child { color: var(--color-brand); }
+.hero-orbit-art__path { position: absolute; z-index: -1; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.hero-orbit-art__path path { stroke: #c6a69b; stroke-width: 1.5; stroke-dasharray: 3 8; stroke-linecap: round; }
+.hero-orbit-art__path circle { fill: #f7f5ef; stroke: var(--color-brand); stroke-width: 2; }
+.hero-orbit-art__ghost {
+  position: absolute;
+  z-index: -1;
+  top: 1%;
+  right: -2%;
+  color: rgba(189, 48, 46, .045);
+  font-size: clamp(210px, 24vw, 330px);
+  font-weight: 850;
+  line-height: .8;
+  letter-spacing: -.12em;
+}
+.hero-orbit-art__word {
+  position: absolute;
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+  color: #172832;
+  font-size: clamp(38px, 4.1vw, 53px);
+  font-weight: 800;
+  line-height: .98;
+  letter-spacing: -.075em;
+  white-space: nowrap;
+}
+.hero-orbit-art__word small {
+  align-self: flex-start;
+  margin: 4px 3px 0 0;
+  color: #9b6660;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .08em;
+}
+.hero-orbit-art__word > span { color: var(--color-brand); }
+.hero-orbit-art__word--understand { top: 17%; left: 5%; color: #a84942; }
+.hero-orbit-art__word--choose { top: 46%; left: 39%; }
+.hero-orbit-art__word--drive { top: 70%; left: 48%; color: #a84942; }
+.hero-orbit-art__note {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: #536169;
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.hero-orbit-art__note i { width: 6px; height: 6px; flex: 0 0 auto; border-radius: 50%; background: var(--color-brand); box-shadow: 0 0 0 4px rgba(189,48,46,.09); }
+.hero-orbit-art__note--one { top: 34%; right: 5%; }
+.hero-orbit-art__note--two { top: 61%; left: 3%; }
+.hero-orbit-art__note--three { right: 1%; bottom: 9%; }
+.hero-orbit-art__signature { right: 4px; bottom: 1px; color: #8a9396; font-size: 8px; }
+.hero-orbit-art__signature i { width: 23px; height: 1px; background: #d18f83; }
+
+@media (max-width: 1100px) {
+  .hero-orbit-art { height: 395px; }
+  .hero-orbit-art__word { font-size: clamp(36px, 4.4vw, 48px); }
+  .hero-orbit-art__word--choose { left: 34%; }
+  .hero-orbit-art__word--drive { left: 43%; }
+}
+@media (max-width: 780px) {
+  .hero-orbit-art { width: min(100%, 600px); height: 350px; }
+  .hero-orbit-art__word { font-size: clamp(39px, 7vw, 50px); }
+  .hero-orbit-art__word--understand { top: 17%; left: 5%; }
+  .hero-orbit-art__word--choose { top: 45%; left: 34%; }
+  .hero-orbit-art__word--drive { top: 70%; left: 43%; }
+  .hero-orbit-art__note { font-size: 10px; }
+  .hero-orbit-art__ghost { font-size: clamp(190px, 37vw, 270px); }
+}
+@media (max-width: 540px) {
+  .hero-orbit-art { height: 292px; margin-top: 3px; }
+  .hero-orbit-art__caption { font-size: 7px; }
+  .hero-orbit-art__word { font-size: clamp(34px, 9.5vw, 43px); }
+  .hero-orbit-art__word--understand { top: 18%; left: 1%; }
+  .hero-orbit-art__word--choose { top: 46%; left: 29%; }
+  .hero-orbit-art__word--drive { top: 70%; left: 39%; }
+  .hero-orbit-art__note { font-size: 9px; }
+  .hero-orbit-art__note--one { top: 34%; right: 0; }
+  .hero-orbit-art__note--two { top: 61%; left: 0; }
+  .hero-orbit-art__note--three { bottom: 9%; right: 0; }
+  .hero-orbit-art__signature { font-size: 6.5px; }
+}

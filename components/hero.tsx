@@ -10,21 +10,22 @@ export function Hero() {
           <HeroCopy />
         </div>
 
-        <div className="hero-type-board" aria-hidden="true">
-          <div className="hero-type-board__topline">
-            <span>THE NEXT AUTO SHIELD APPROACH</span>
-            <span>01 — 03</span>
-          </div>
-          <div className="hero-type-board__stack">
-            <span>Understand.</span>
-            <span>Choose.</span>
-            <span>Drive.</span>
-          </div>
-          <div className="hero-type-board__footer">
-            <span>CLARITY FIRST</span>
-            <i />
-            <span>CONFIDENCE FOLLOWS</span>
-          </div>
+        <div className="hero-orbit-art" aria-hidden="true">
+          <div className="hero-orbit-art__caption"><span>THE NEXT AUTO SHIELD APPROACH</span><span>01 — 03</span></div>
+          <svg className="hero-orbit-art__path" viewBox="0 0 560 470" fill="none" focusable="false">
+            <path d="M62 364C99 320 131 342 158 300C192 248 204 176 275 168C345 160 364 235 424 216C474 201 481 148 510 114" />
+            <circle cx="62" cy="364" r="6" />
+            <circle cx="275" cy="168" r="7" />
+            <circle cx="510" cy="114" r="6" />
+          </svg>
+          <span className="hero-orbit-art__ghost" aria-hidden="true">01</span>
+          <div className="hero-orbit-art__word hero-orbit-art__word--understand"><small>01</small>Understand<span>.</span></div>
+          <div className="hero-orbit-art__word hero-orbit-art__word--choose"><small>02</small>Choose<span>.</span></div>
+          <div className="hero-orbit-art__word hero-orbit-art__word--drive"><small>03</small>Drive<span>.</span></div>
+          <div className="hero-orbit-art__note hero-orbit-art__note--one"><i />Clear choices</div>
+          <div className="hero-orbit-art__note hero-orbit-art__note--two"><i />Real guidance</div>
+          <div className="hero-orbit-art__note hero-orbit-art__note--three"><i />Your pace</div>
+          <div className="hero-orbit-art__signature"><span>CLARITY FIRST</span><i /><span>CONFIDENCE FOLLOWS</span></div>
         </div>
       </div>
 
