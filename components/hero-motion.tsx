@@ -11,9 +11,9 @@ export function HeroCopy() {
       </p>
 
       <h1 className="hero-editorial-title">
-        Clear coverage.
+        Coverage,
         <br />
-        <span className="hero-editorial-strong-accent">Confident driving.</span>
+        <span className="hero-editorial-strong-accent">made clear.</span>
       </h1>
 
       <p className="hero-editorial-sub">
