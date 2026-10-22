@@ -11,17 +11,17 @@ export function HeroCopy() {
     <div className="hero-editorial-left">
       <p className="hero-editorial-eyebrow">
         <span className="hero-editorial-eyebrow__icon"><ShieldCheck size={16} aria-hidden="true" /></span>
-        Clear protection. Real support.
+        Confidence for every mile
       </p>
 
       <h1 className="hero-editorial-title">
-        Auto insurance,
+        A clearer road
         <br />
-        made <span className="hero-editorial-italic">clear.</span>
+        starts with <span className="hero-editorial-italic">better coverage.</span>
       </h1>
 
       <p className="hero-editorial-sub">
-        Understand your coverage choices, explore options that fit the way you drive, and get help from a licensed advisor when you need it.
+        Find coverage that fits your life, understand what you’re choosing, and get real help from a licensed advisor whenever you need it.
       </p>
 
       <div className="hero-editorial-actions">
@@ -29,15 +29,15 @@ export function HeroCopy() {
           <span>Explore quote options</span>
           <ArrowRight size={17} aria-hidden="true" />
         </Link>
-        <Link href="/#coverage-liability" className="hero-secondary-action">
-          Explore coverage
+        <Link href="/#coverage" className="hero-secondary-action">
+          See how it works
           <ArrowRight size={15} aria-hidden="true" />
         </Link>
       </div>
 
       <div className="hero-editorial-trust" aria-label="What you can expect">
         <span className="hero-editorial-trust__item"><Check size={15} aria-hidden="true" /> No obligation to buy</span>
-        <span className="hero-editorial-trust__item"><ShieldCheck size={15} aria-hidden="true" /> Clear coverage explanations</span>
+        <span className="hero-editorial-trust__item"><ShieldCheck size={15} aria-hidden="true" /> Straightforward options</span>
         <span className="hero-editorial-trust__item"><UserRoundCheck size={15} aria-hidden="true" /> Licensed advisor support</span>
       </div>
 
@@ -55,34 +55,18 @@ export function HeroVisual() {
     const rect = stageRef.current.getBoundingClientRect();
     const x = e.clientX - rect.left - rect.width / 2;
     const y = e.clientY - rect.top - rect.height / 2;
-    setTilt({
-      x: -(y / rect.height) * 4,
-      y: (x / rect.width) * 5,
-    });
+    setTilt({ x: -(y / rect.height) * 4, y: (x / rect.width) * 5 });
   };
 
-  const handleMouseLeave = () => {
-    setTilt({ x: 0, y: 0 });
-  };
+  const handleMouseLeave = () => setTilt({ x: 0, y: 0 });
 
   return (
-    <div
-      ref={stageRef}
-      className="hero-reference-visual-wrapper"
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-    >
-      <div
-        className="hero-reference-visual-inner"
-        style={{
-          transform: `perspective(1200px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
-        }}
-      >
-        {/* Cinematic Villa & Performance Sedan Scene */}
+    <div ref={stageRef} className="hero-reference-visual-wrapper" onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
+      <div className="hero-reference-visual-inner" style={{ transform: `perspective(1200px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)` }}>
         <div className="hero-scene-frame">
           <Image
             src={IMAGES.hero}
-            alt="Candy red luxury sports sedan parked outside sun-drenched modern architectural villa"
+            alt="Red sedan parked outside a modern home"
             width={1400}
             height={1310}
             priority
@@ -90,8 +74,6 @@ export function HeroVisual() {
             className="hero-scene-car-image"
             referrerPolicy="no-referrer"
           />
-
-          {/* Soft ambient sunflare and vignette depth */}
           <div className="hero-scene-warm-glow" aria-hidden="true" />
           <div className="hero-scene-shadow-plate" aria-hidden="true" />
         </div>
