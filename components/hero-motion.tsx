@@ -1,27 +1,23 @@
-"use client";
-
-import { useState, useRef } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { ArrowRight, Check, ShieldCheck, UserRoundCheck } from "lucide-react";
-import { ROUTES, IMAGES } from "@/lib/site-config";
+import { ROUTES } from "@/lib/site-config";
 
 export function HeroCopy() {
   return (
     <div className="hero-editorial-left">
       <p className="hero-editorial-eyebrow">
-        <span className="hero-editorial-eyebrow__icon"><ShieldCheck size={16} aria-hidden="true" /></span>
-        Confidence for every mile
+        <span className="hero-editorial-eyebrow__icon"><ShieldCheck size={15} aria-hidden="true" /></span>
+        Auto insurance, made human
       </p>
 
       <h1 className="hero-editorial-title">
-        A clearer road
+        Clear coverage.
         <br />
-        starts with <span className="hero-editorial-italic">better coverage.</span>
+        <span className="hero-editorial-strong-accent">Confident driving.</span>
       </h1>
 
       <p className="hero-editorial-sub">
-        Find coverage that fits your life, understand what you’re choosing, and get real help from a licensed advisor whenever you need it.
+        Understand your options, find protection that fits, and get licensed guidance without the guesswork.
       </p>
 
       <div className="hero-editorial-actions">
@@ -29,55 +25,19 @@ export function HeroCopy() {
           <span>Explore quote options</span>
           <ArrowRight size={17} aria-hidden="true" />
         </Link>
-        <Link href="/#coverage" className="hero-secondary-action">
-          See how it works
+        <Link href={ROUTES.contact} className="hero-secondary-action">
+          Talk to an advisor
           <ArrowRight size={15} aria-hidden="true" />
         </Link>
       </div>
 
       <div className="hero-editorial-trust" aria-label="What you can expect">
-        <span className="hero-editorial-trust__item"><Check size={15} aria-hidden="true" /> No obligation to buy</span>
-        <span className="hero-editorial-trust__item"><ShieldCheck size={15} aria-hidden="true" /> Straightforward options</span>
-        <span className="hero-editorial-trust__item"><UserRoundCheck size={15} aria-hidden="true" /> Licensed advisor support</span>
+        <span className="hero-editorial-trust__item"><Check size={14} aria-hidden="true" /> No obligation to buy</span>
+        <span className="hero-editorial-trust__item"><ShieldCheck size={14} aria-hidden="true" /> Clear coverage choices</span>
+        <span className="hero-editorial-trust__item"><UserRoundCheck size={14} aria-hidden="true" /> Licensed advisor support</span>
       </div>
 
-      <p className="hero-editorial-note">A quote request doesn’t create a policy. Terms, pricing, and availability vary.</p>
-    </div>
-  );
-}
-
-export function HeroVisual() {
-  const stageRef = useRef<HTMLDivElement>(null);
-  const [tilt, setTilt] = useState({ x: 0, y: 0 });
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!stageRef.current) return;
-    const rect = stageRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left - rect.width / 2;
-    const y = e.clientY - rect.top - rect.height / 2;
-    setTilt({ x: -(y / rect.height) * 4, y: (x / rect.width) * 5 });
-  };
-
-  const handleMouseLeave = () => setTilt({ x: 0, y: 0 });
-
-  return (
-    <div ref={stageRef} className="hero-reference-visual-wrapper" onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
-      <div className="hero-reference-visual-inner" style={{ transform: `perspective(1200px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)` }}>
-        <div className="hero-scene-frame">
-          <Image
-            src={IMAGES.hero}
-            alt="Red sedan parked outside a modern home"
-            width={1400}
-            height={1310}
-            priority
-            sizes="(max-width: 1024px) 100vw, 55vw"
-            className="hero-scene-car-image"
-            referrerPolicy="no-referrer"
-          />
-          <div className="hero-scene-warm-glow" aria-hidden="true" />
-          <div className="hero-scene-shadow-plate" aria-hidden="true" />
-        </div>
-      </div>
+      <p className="hero-editorial-note">Coverage, pricing, and availability vary by state and driving profile.</p>
     </div>
   );
 }
