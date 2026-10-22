@@ -1570,3 +1570,144 @@ html { scroll-padding-top: 100px; }
   .quote-prep__heading h2 { font-size: 38px; }
   .quote-prep__notice { align-items: flex-start; flex-direction: column; gap: 12px; padding: 15px; }
 }
+
+
+/* Readable editorial type scale for homepage sections beyond the hero. */
+.section-heading h2 { font-size: clamp(38px, 4.2vw, 54px); line-height: 1.08; letter-spacing: -.06em; }
+.section-heading__description { max-width: 600px; font-size: 17px; line-height: 1.75; }
+.section-heading .eyebrow,
+.policy-basics__intro .eyebrow,
+.quote-prep__heading .eyebrow { font-size: 11px; }
+
+.benefit-intro { margin-bottom: 44px; }
+.benefit-card { min-height: 260px; padding: 30px 27px 26px; }
+.benefit-card h3,
+.coverage-card h3 { font-size: 20px; line-height: 1.3; }
+.benefit-card p,
+.coverage-card p { font-size: 15.5px; line-height: 1.75; }
+.coverage-card { min-height: 295px; padding: 27px 27px 26px; }
+.coverage-card p { min-height: 72px; }
+.coverage-card ul { gap: 10px 17px; margin-top: 18px; padding-top: 15px; }
+.coverage-card li { font-size: 13px; line-height: 1.5; }
+.coverage-note { font-size: 13px; }
+
+.advisor-copy h2 { max-width: 560px; font-size: clamp(40px, 4.2vw, 56px); line-height: 1.08; }
+.advisor-copy__lead { font-size: 17px; line-height: 1.75; }
+.check-list { gap: 14px; }
+.check-list li { align-items: flex-start; font-size: 15.5px; line-height: 1.6; }
+.check-list li > span { margin-top: 1px; }
+
+.process-aside,
+.stories-note { font-size: 14px; }
+.process-step h3 { margin-top: 21px; font-size: 20px; line-height: 1.32; }
+.process-step p { max-width: 290px; font-size: 15.5px; line-height: 1.75; }
+.story-card { min-height: 270px; padding: 28px 28px 25px; }
+.story-card blockquote { font-size: 16px; line-height: 1.75; }
+.story-card figcaption strong { font-size: 14px; }
+.story-card figcaption small { font-size: 12px; }
+
+.faq-item summary { min-height: 72px; font-size: 17px; line-height: 1.5; }
+.faq-item__answer p { font-size: 16px; line-height: 1.75; }
+.quote-callout__copy h2 { font-size: clamp(32px, 3.6vw, 44px); line-height: 1.12; }
+.quote-callout__copy > p:last-child { font-size: 15px; line-height: 1.75; }
+
+.policy-basics__intro h2 { font-size: clamp(42px, 5vw, 62px); }
+.policy-basics__intro > p:last-child { max-width: 400px; font-size: 16px; line-height: 1.75; }
+.policy-basics__item dt { font-size: 22px; }
+.policy-basics__item dd { font-size: 16px; line-height: 1.7; }
+.policy-basics__disclaimer { font-size: 11px; }
+.quote-prep__heading h2 { font-size: clamp(40px, 4.5vw, 58px); line-height: 1.04; }
+.quote-prep__heading > p { font-size: 16px; line-height: 1.75; }
+.quote-prep__step { min-height: 190px; padding-top: 28px; padding-bottom: 26px; }
+.quote-prep__number { font-size: 12px; }
+.quote-prep__step h3 { font-size: 21px; }
+.quote-prep__step p { max-width: 330px; font-size: 15px; line-height: 1.7; }
+.quote-prep__notice p { font-size: 13px; }
+.quote-prep__notice a { font-size: 13px; }
+
+.site-footer__banner-content h2 { font-size: clamp(28px, 3vw, 38px); }
+.site-footer__banner-content p,
+.footer-brand-desc { font-size: 14px; line-height: 1.75; }
+.site-footer__banner-actions .button { font-size: 13px; }
+.footer-advisor-link,
+.footer-links-list a,
+.footer-contact-link strong { font-size: 13px; }
+.footer-contact-link small,
+.footer-hours-badge { font-size: 11px; }
+.site-footer__legal-notice,
+.site-footer__legal-links a,
+.site-footer__bottom { font-size: 11px; }
+.site-footer__col h3 { font-size: 11px; }
+
+@media (max-width: 1020px) {
+  .benefit-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .benefit-card { min-height: 220px; }
+  .benefit-card:nth-child(2) { border-right: 0; }
+  .benefit-card:nth-child(n + 3) { border-top: 1px solid var(--color-border); }
+  .coverage-grid { gap: 18px; }
+  .coverage-card { min-height: 315px; }
+  .process-list { gap: 22px; }
+  .story-card { min-height: 300px; }
+}
+@media (max-width: 780px) {
+  .section-heading h2 { font-size: clamp(36px, 6vw, 46px); }
+  .section-heading__description { font-size: 16px; }
+  .benefit-card h3, .coverage-card h3 { font-size: 19px; }
+  .benefit-card p, .coverage-card p { font-size: 15px; }
+  .coverage-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .coverage-card { min-height: 0; }
+  .coverage-card p { min-height: 0; }
+  .advisor-copy h2 { font-size: clamp(38px, 6vw, 50px); }
+  .advisor-copy__lead { font-size: 16px; }
+  .process-step h3 { font-size: 19px; }
+  .process-step p { font-size: 15px; }
+  .story-card { min-height: 0; }
+  .story-card blockquote { font-size: 15.5px; }
+  .policy-basics__intro h2 { font-size: clamp(40px, 6.5vw, 54px); }
+  .quote-prep__heading h2 { font-size: clamp(38px, 6vw, 50px); }
+  .quote-prep__step h3 { font-size: 19px; }
+  .quote-prep__step p { font-size: 15px; }
+  .site-footer__banner-content h2 { font-size: 30px; }
+}
+@media (max-width: 540px) {
+  .section-heading h2 { font-size: clamp(34px, 9vw, 40px); line-height: 1.1; }
+  .section-heading__description { font-size: 15.5px; line-height: 1.7; }
+  .benefit-grid { grid-template-columns: 1fr; }
+  .benefit-card { min-height: 0; padding: 23px 8px 24px; border-right: 0; }
+  .benefit-card:nth-child(n + 2) { border-top: 1px solid var(--color-border); }
+  .benefit-card h3, .coverage-card h3 { font-size: 19px; }
+  .benefit-card p, .coverage-card p { font-size: 15px; }
+  .coverage-grid { grid-template-columns: 1fr; }
+  .coverage-card { padding: 23px; }
+  .coverage-card li { font-size: 13px; }
+  .coverage-note { font-size: 12.5px; }
+  .advisor-copy h2 { font-size: 39px; }
+  .advisor-copy__lead { font-size: 15.5px; }
+  .check-list li { font-size: 15px; }
+  .process-list { grid-template-columns: 1fr; gap: 24px; }
+  .process-list::before { display: none; }
+  .process-step h3 { margin-top: 14px; font-size: 19px; }
+  .process-step p { max-width: 100%; font-size: 15px; }
+  .stories-grid { grid-template-columns: 1fr; }
+  .story-card { padding: 23px; }
+  .story-card blockquote { font-size: 15.5px; }
+  .faq-item summary { min-height: 68px; font-size: 16px; }
+  .faq-item__answer p { font-size: 15px; }
+  .quote-callout__copy h2 { font-size: 32px; }
+  .quote-callout__copy > p:last-child { font-size: 14px; }
+  .policy-basics__intro h2 { font-size: 40px; }
+  .policy-basics__intro > p:last-child { font-size: 15px; }
+  .policy-basics__item dt { font-size: 19px; }
+  .policy-basics__item dd { font-size: 15px; }
+  .quote-prep__heading h2 { font-size: 38px; }
+  .quote-prep__heading > p { font-size: 15px; }
+  .quote-prep__step h3 { font-size: 19px; }
+  .quote-prep__step p { font-size: 15px; }
+  .quote-prep__notice p { font-size: 12.5px; }
+  .site-footer__banner-content h2 { font-size: 27px; }
+  .site-footer__banner-content p,
+  .footer-brand-desc { font-size: 13px; }
+  .footer-links-list a,
+  .footer-contact-link strong,
+  .footer-advisor-link { font-size: 12px; }
+}
